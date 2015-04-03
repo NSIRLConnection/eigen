@@ -14,6 +14,7 @@
 #import "ARAppDelegate+Analytics.h"
 #import "ARUserManager.h"
 
+#import "UIViewController+InnermostTopViewController.h"
 #import "ARAdminSettingsViewController.h"
 #import "ARQuicksilverViewController.h"
 #import "ARRouter.h"
@@ -149,19 +150,38 @@ static ARAppDelegate *_sharedInstance = nil;
 - (void)setupXCallbackUrlManager
 {
     [[IACManager sharedManager] handleAction:@"open" withBlock:^(NSDictionary *inputParameters, IACSuccessBlock success, IACFailureBlock failure) {
-        NSString *url = inputParameters[@"url"];
-        if (!url) {
-            failure();
+        NSString *urlString = inputParameters[@"url"];
+        NSURL *url = [NSURL URLWithString:urlString];
+
+        NSDictionary *errorDict;
+
+        if (!urlString.length > 0) {
+            errorDict = @{NSLocalizedDescriptionKey: @"No URL was provided. Provide an Artsy URL in the `url` parameter."};
+        } else if (!url) {
+            errorDict = @{NSLocalizedDescriptionKey: @"The URL provided was malformed. Provide an Artsy URL in the `url` parameter."};
+        } else if (![ARRouter isInternalURL:url]) {
+            errorDict = @{NSLocalizedDescriptionKey: @"The URL provided was not an Artsy URL. Provide an Artsy URL in the `url` parameter."};
+        }
+
+        if (errorDict) {
+            failure([NSError errorWithDomain:@"net.artsy.artsy.x-callback-url" code:400 userInfo:errorDict]);
             return;
         }
 
         UIViewController *viewController = [ARSwitchBoard.sharedInstance loadURL:url];
         if (viewController) {
-            ARXCallbackUrlManager *manager = [[ARXCallbackUrlManager alloc] initWithViewController:viewController andBackBlock:success];
+            // This happens when the URL is routed to a web view.
 
-            viewController.navigationController.xCallbackUrlManager = manager;
-            [[ARTopMenuViewController sharedController] pushViewController:viewController];
+            [[ARTopMenuViewController sharedController] pushViewController:viewController animated:YES];
+        } else {
+            // This happens if JLRoutes found a route for the URL.
+
+            viewController = [ARTopMenuViewController sharedController].rootNavigationController.ar_innermostTopViewController;
         }
+
+        ARBackButtonCallbackManager *manager = [[ARBackButtonCallbackManager alloc] initWithViewController:viewController andBackBlock:^{ success(nil, NO); }];
+
+        [ARTopMenuViewController sharedController].backButtonCallbackManager = manager;
     }];
 }
 
