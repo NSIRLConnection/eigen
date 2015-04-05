@@ -2,8 +2,10 @@
 
 + (void)setup;
 + (NSSet *)artsyHosts;
+
 + (NSURL *)baseApiURL;
 + (NSURL *)baseWebURL;
++ (NSURL *)baseDesktopWebURL;
 
 + (AFHTTPClient *)httpClient;
 + (void)setupWithBaseApiURL:(NSURL *)baseApiURL;

@@ -105,6 +105,15 @@ NSString *ARTrialUserUUID = @"ARTrialUserUUID";
     return _userAuthenticationToken ?: [UICKeyChainStore stringForKey:AROAuthTokenDefault];
 }
 
+
+- (void)hasExistingAuthenticationFromSafari:(void (^)(BOOL hasCredentials))completion;
+{
+    NSParameterAssert(completion);
+    [UICKeyChainStore requestSharedWebCredentialWithCompletion:^(NSArray *credentials, NSError *error) {
+        completion(credentials.count > 0);
+    }];
+}
+
 - (void)saveUserOAuthToken:(NSString *)token expiryDate:(NSDate *)expiryDate
 {
     NSString *service = [UICKeyChainStore defaultService];
@@ -116,6 +125,22 @@ NSString *ARTrialUserUUID = @"ARTrialUserUUID";
     [defaults removeObjectForKey:ARXAppTokenDefault];
     [defaults removeObjectForKey:ARXAppTokenExpiryDateDefault];
     [defaults synchronize];
+}
+
+- (BOOL)attemptLoginWithSafariCredentials:(void(^)(NSString *accessToken, NSDate *expirationDate))credentials
+                                  gotUser:(void(^)(User *currentUser))gotUser
+                    authenticationFailure:(void (^)(NSError *error))authenticationFailure
+                           networkFailure:(void (^)(NSError *error))networkFailure
+{
+    UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithServer:[ARRouter baseDesktopWebURL]
+                                                              protocolType:UICKeyChainStoreProtocolTypeHTTPS];
+
+    NSArray *items = keychain.allItems;
+    for (NSString *item in items) {
+        NSLog(@"item: %@", item);
+    }
+
+
 }
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password

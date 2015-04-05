@@ -2,5 +2,4 @@
 
 @interface ARRouter (Private)
 + (NSURL *)baseMobileWebURL;
-+ (NSURL *)baseDesktopWebURL;
 @end

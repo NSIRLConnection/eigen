@@ -88,7 +88,7 @@ PODS:
   - Specta (0.3.0.beta1)
   - TSMiniWebBrowser@dblock (HEAD based on 1.1)
   - UIAlertView+Blocks (0.8)
-  - UICKeyChainStore (1.0.5)
+  - UICKeyChainStore (2.0.4)
   - UIView+BooleanAnimations (1.0.2)
   - VCRURLConnection (0.2.0)
   - XCTest+OHHTTPStubSuiteCleanUp (1.0.0):
@@ -103,7 +103,8 @@ DEPENDENCIES:
   - ARAnalytics/HockeyApp (from `https://github.com/orta/ARAnalytics.git`)
   - ARAnalytics/Mixpanel (from `https://github.com/orta/ARAnalytics.git`)
   - ARASCIISwizzle (= 1.1.0)
-  - ARCollectionViewMasonryLayout (from `https://github.com/ashfurrow/ARCollectionViewMasonryLayout`, commit `2ee871f509806af147d0529a36f791906997d4b7`)
+  - ARCollectionViewMasonryLayout (from `https://github.com/ashfurrow/ARCollectionViewMasonryLayout`,
+    commit `2ee871f509806af147d0529a36f791906997d4b7`)
   - ARGenericTableViewController (= 1.0.2)
   - ARTiledImageView (from `https://github.com/dblock/ARTiledImageView`, commit `1a31b864d1d56b1aaed0816c10bb55cf2e078bb8`)
   - Artsy+UIColors
@@ -144,7 +145,7 @@ DEPENDENCIES:
   - Specta (from `https://github.com/specta/specta.git`, tag `v0.3.0.beta1`)
   - TSMiniWebBrowser@dblock (HEAD)
   - UIAlertView+Blocks (= 0.8)
-  - UICKeyChainStore (= 1.0.5)
+  - UICKeyChainStore (= 2.0.4)
   - UIView+BooleanAnimations
   - VCRURLConnection (= 0.2.0)
   - XCTest+OHHTTPStubSuiteCleanUp (= 1.0.0)
@@ -242,9 +243,9 @@ SPEC CHECKSUMS:
   Specta: d2158a483ad179e5f8d3a29f75ff4fc0ff6fab16
   TSMiniWebBrowser@dblock: 6eb565b44cc2e5cd5eee7660ee5c21f8afae415c
   UIAlertView+Blocks: 6b408d63507287b22c6e631a2b25ca26f96fb609
-  UICKeyChainStore: e81dc3b58d56ffaed61ab6669eb97071e53fc377
+  UICKeyChainStore: 69eb0c3a6f669bccf16ba88de3b9069b71501361
   UIView+BooleanAnimations: a760be9a066036e55f298b7b7350a6cb14cfcd97
   VCRURLConnection: accd771ebd4be11183a3e4d5a4403f180a9a235e
   XCTest+OHHTTPStubSuiteCleanUp: 4469ec8863c6bc022c5089a9b94233eb3416c5ee
 
-COCOAPODS: 0.36.0.rc.1
+COCOAPODS: 0.36.3

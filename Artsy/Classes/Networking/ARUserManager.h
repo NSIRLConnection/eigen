@@ -24,8 +24,14 @@
 - (BOOL)hasValidAuthenticationToken;
 - (BOOL)hasValidXAppToken;
 
+- (void)hasExistingAuthenticationFromSafari:(void (^)(BOOL hasCredentials))completion;
 
 - (void)startTrial:(void(^)())callback failure:(void (^)(NSError *error))failure;
+
+- (BOOL)attemptLoginWithSafariCredentials:(void(^)(NSString *accessToken, NSDate *expirationDate))credentials
+                                  gotUser:(void(^)(User *currentUser))gotUser
+                    authenticationFailure:(void (^)(NSError *error))authenticationFailure
+                           networkFailure:(void (^)(NSError *error))networkFailure;
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password

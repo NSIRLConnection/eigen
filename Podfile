@@ -69,6 +69,7 @@ end
 # Auth
 pod 'Facebook-iOS-SDK', '3.14.1'
 pod 'AFOAuth1Client', '0.3.3'
+pod 'UICKeyChainStore', '2.0.4'
 
 # Language niceities
 pod 'ObjectiveSugar', '1.1.0'
@@ -89,7 +90,6 @@ pod 'Mixpanel', '2.3.1'
 pod 'ARAnalytics/Mixpanel', :git => 'https://github.com/orta/ARAnalytics.git'
 pod 'ARAnalytics/HockeyApp', :git => 'https://github.com/orta/ARAnalytics.git'
 pod 'ARAnalytics/DSL', :git => 'https://github.com/orta/ARAnalytics.git'
-pod 'UICKeyChainStore', '1.0.5'
 
 # Fairs
 pod 'NAMapKit', :git => 'https://github.com/neilang/NAMapKit', :commit => '62275386978db91b0e7ed8de755d15cef3e793b4'
